@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 14 jan. 2020 à 11:02
+-- Généré le :  mar. 14 jan. 2020 à 12:17
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.2.18
 
@@ -36,7 +36,14 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `idUser` int(11) NOT NULL,
   PRIMARY KEY (`idAdmin`),
   KEY `fk_Admin_User_idx` (`idUser`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `admin`
+--
+
+INSERT INTO `admin` (`idAdmin`, `idUser`) VALUES
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -51,7 +58,15 @@ CREATE TABLE IF NOT EXISTS `carte` (
   `idCompte` int(11) NOT NULL,
   PRIMARY KEY (`idCarte`),
   KEY `fk_Carte_Compte1_idx` (`idCompte`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `carte`
+--
+
+INSERT INTO `carte` (`idCarte`, `isActiv`, `idCompte`) VALUES
+(1, 1, 1),
+(2, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -66,9 +81,18 @@ CREATE TABLE IF NOT EXISTS `client` (
   `dateNaissance` datetime DEFAULT NULL,
   `adresse` varchar(405) DEFAULT NULL,
   `idUser` int(11) NOT NULL,
+  `idConseiller` int(11) NOT NULL,
   PRIMARY KEY (`idClient`),
-  KEY `fk_Client_User1_idx` (`idUser`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `fk_Client_User1_idx` (`idUser`),
+  KEY `fk_Client_Conseiller1_idx` (`idConseiller`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `client`
+--
+
+INSERT INTO `client` (`idClient`, `photo`, `dateNaissance`, `adresse`, `idUser`, `idConseiller`) VALUES
+(1, 'https://vignette.wikia.nocookie.net/anime-characters-info/images/4/4e/Lord_Dio.jpg/revision/latest?cb=20190923201136', '1994-05-01 00:00:00', '1 rue du stand', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -82,9 +106,17 @@ CREATE TABLE IF NOT EXISTS `compte` (
   `solde` int(11) DEFAULT NULL,
   `decouvert` int(11) DEFAULT NULL,
   `idClient` int(11) NOT NULL,
+  `isActiv` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`idCompte`),
   KEY `fk_Compte_Client1_idx` (`idClient`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `compte`
+--
+
+INSERT INTO `compte` (`idCompte`, `solde`, `decouvert`, `idClient`, `isActiv`) VALUES
+(1, 5000, 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -100,7 +132,14 @@ CREATE TABLE IF NOT EXISTS `conseiller` (
   `idUser` int(11) NOT NULL,
   PRIMARY KEY (`idConseiller`),
   KEY `fk_Conseiller_User1_idx` (`idUser`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `conseiller`
+--
+
+INSERT INTO `conseiller` (`idConseiller`, `photo`, `isActiv`, `idUser`) VALUES
+(1, 'https://www.exobaston.com/wp-content/uploads/2019/01/jotaro-jump.jpg', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -165,7 +204,14 @@ CREATE TABLE IF NOT EXISTS `messages` (
   PRIMARY KEY (`idmessages`),
   KEY `fk_messages_Client1_idx` (`idClient`),
   KEY `fk_messages_Conseiller1_idx` (`idConseiller`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `messages`
+--
+
+INSERT INTO `messages` (`idmessages`, `message`, `dateEnvoi`, `idClient`, `idConseiller`) VALUES
+(1, 'Salut mon conseillé, c\'est du test', '2020-01-13 00:00:00', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -183,68 +229,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   `mail` varchar(100) NOT NULL,
   PRIMARY KEY (`idUser`),
   UNIQUE KEY `login_UNIQUE` (`login`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
--- Contraintes pour les tables déchargées
+-- Déchargement des données de la table `user`
 --
 
---
--- Contraintes pour la table `admin`
---
-ALTER TABLE `admin`
-  ADD CONSTRAINT `fk_Admin_User` FOREIGN KEY (`idUser`) REFERENCES `user` (`idUser`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+INSERT INTO `user` (`idUser`, `nom`, `prenom`, `login`, `mdp`, `mail`) VALUES
+(1, 'admin1', 'aaa', 'admin1', 'admin1', 'admin1@mail.com'),
+(2, 'conseil1', 'ccc', 'cons1', 'cons1', 'cons1@mail.com'),
+(3, 'user1', 'uuu', 'user1', 'user1', 'user1@mail.com');
 
---
--- Contraintes pour la table `carte`
---
-ALTER TABLE `carte`
-  ADD CONSTRAINT `fk_Carte_Compte1` FOREIGN KEY (`idCompte`) REFERENCES `compte` (`idCompte`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Contraintes pour la table `client`
---
-ALTER TABLE `client`
-  ADD CONSTRAINT `fk_Client_User1` FOREIGN KEY (`idUser`) REFERENCES `user` (`idUser`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Contraintes pour la table `compte`
---
-ALTER TABLE `compte`
-  ADD CONSTRAINT `fk_Compte_Client1` FOREIGN KEY (`idClient`) REFERENCES `client` (`idClient`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Contraintes pour la table `conseiller`
---
-ALTER TABLE `conseiller`
-  ADD CONSTRAINT `fk_Conseiller_User1` FOREIGN KEY (`idUser`) REFERENCES `user` (`idUser`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Contraintes pour la table `histocompte`
---
-ALTER TABLE `histocompte`
-  ADD CONSTRAINT `fk_HistoCompte_Compte1` FOREIGN KEY (`idCompte`) REFERENCES `compte` (`idCompte`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Contraintes pour la table `histoconnexion`
---
-ALTER TABLE `histoconnexion`
-  ADD CONSTRAINT `fk_HistoConnexion_User1` FOREIGN KEY (`idUser`) REFERENCES `user` (`idUser`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Contraintes pour la table `histocons`
---
-ALTER TABLE `histocons`
-  ADD CONSTRAINT `fk_HistoCons_Conseiller1` FOREIGN KEY (`idConseiller`) REFERENCES `conseiller` (`idConseiller`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Contraintes pour la table `messages`
---
-ALTER TABLE `messages`
-  ADD CONSTRAINT `fk_messages_Client1` FOREIGN KEY (`idClient`) REFERENCES `client` (`idClient`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_messages_Conseiller1` FOREIGN KEY (`idConseiller`) REFERENCES `conseiller` (`idConseiller`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
