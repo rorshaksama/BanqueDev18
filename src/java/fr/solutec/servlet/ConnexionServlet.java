@@ -85,17 +85,12 @@ public class ConnexionServlet extends HttpServlet {
                 if (UserDao.isClient(u.getId())) {
                     request.getSession(true).setAttribute("userConnect", u);
                     response.sendRedirect("client");
-                } else {
-                    if (UserDao.isAdmin(u.getId())) {
-                        request.getSession(true).setAttribute("userConnect", u);
-                        response.sendRedirect("admin");
-                    } else {
-                        if (UserDao.isCons(u.getId())) {
-                            request.getSession(true).setAttribute("userConnect", u);
-                            response.sendRedirect("conseil");
-                        }
-                    }
-
+                } else if (UserDao.isAdmin(u.getId())) {
+                    request.getSession(true).setAttribute("userConnect", u);
+                    response.sendRedirect("admin");
+                } else if (UserDao.isCons(u.getId())) {
+                    request.getSession(true).setAttribute("userConnect", u);
+                    response.sendRedirect("conseil");
                 }
 
             } else {
