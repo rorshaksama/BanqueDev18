@@ -211,7 +211,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
 --
 
 INSERT INTO `messages` (`idmessages`, `message`, `dateEnvoi`, `idClient`, `idConseiller`) VALUES
-(1, 'Salut mon conseillé, c\'est du test', '2020-01-13 00:00:00', 1, 1);
+(1, 'Salut mon conseillé, c''est du test', '2020-01-13 00:00:00', 1, 1);
 
 -- --------------------------------------------------------
 
