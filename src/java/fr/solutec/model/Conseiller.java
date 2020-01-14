@@ -42,6 +42,7 @@ public class Conseiller {
         this.photo = photo;
     }
 
+
     public boolean isIsActive() {
         return isActive;
     }
