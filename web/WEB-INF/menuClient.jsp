@@ -14,7 +14,7 @@
             <div class="col-sm-9">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <a class="navbar-brand" href="#">Client</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"  aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
@@ -23,10 +23,13 @@
                                 <a class="nav-link" href="client">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="apercuCons.jsp">Aperçu compte</a>
+                                <a class="nav-link" href="apercuCompte">Aperçu compte</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="WEB-INF/profilCons">Profil</a>
+                                <a class="nav-link" href="profilClient">Profil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="messageClient">Messagerie</a>
                             </li>
                         </ul>
                     </div>
@@ -34,7 +37,7 @@
             </div>
 
             <div class="col-sm-3">
-                <button type="button" onclick="location.href = 'login'" class="btn btn-danger btn-block">DECONNEXION</button>
+                <button type="button" class="btn btn-danger btn-block" onclick="location.href = 'deco'">DECONNEXION</button>
             </div>
         </div>
     </body>
