@@ -5,6 +5,8 @@
  */
 package fr.solutec.servlet;
 
+import fr.solutec.dao.UserDao;
+import fr.solutec.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -72,6 +74,22 @@ public class Inscription extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String nom=request.getParameter("nom");
+       String prenom=request.getParameter("prenom");
+       String mail=request.getParameter("mail");
+       String login=request.getParameter("login");
+       String mdp=request.getParameter("mdp");
+       
+       User u = new User (nom,prenom,mail,login,mdp);
+       
+       try{
+           UserDao.inscription(u);
+    response.sendRedirect("index.jsp");
+           
+        }catch (Exception e){
+            PrintWriter out = response.getWriter();
+            out.println(e.getMessage());
+        }
         
     }
 

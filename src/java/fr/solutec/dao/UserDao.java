@@ -69,13 +69,15 @@ public class UserDao {
     }
     
     public static void inscription(User personne) throws SQLException{
-        String sql = "INSERT INTO user (nom, prenom, login, mdp) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO user (nom, prenom,mail, login, mdp) VALUES (?, ?, ?, ?,?)";
         Connection connexion = AccessBD.getConnection();
         PreparedStatement requete = connexion.prepareStatement(sql);
         requete.setString(1, personne.getNom());
         requete.setString(2, personne.getPrenom());
-        requete.setString(3, personne.getLogin());
-        requete.setString(4, personne.getMdp());
+        requete.setString(3, personne.getMail());
+        requete.setString(4, personne.getLogin());
+        requete.setString(5, personne.getMdp());
+        
         requete.execute();
         
     
