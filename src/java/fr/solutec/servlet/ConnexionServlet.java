@@ -79,7 +79,7 @@ public class ConnexionServlet extends HttpServlet {
         String mdp = request.getParameter("mdp");
 
         try {
-            User u = UserDao.getByLoginAndPasse(login, mdp);
+            User u = UserDao.getByLoginAndPass(login, mdp);
             if (u != null) {
                 request.getSession(true).setAttribute("userConnect",u);
                 response.sendRedirect("home");
