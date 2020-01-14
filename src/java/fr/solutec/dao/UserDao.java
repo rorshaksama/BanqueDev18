@@ -1,4 +1,4 @@
-/
+
 package fr.solutec.dao;
 
 import fr.solutec.model.User;
@@ -15,7 +15,7 @@ public class UserDao {
     public static User getByLoginAndPass(String log, String mdp) throws SQLException{
         User u = null;
         String sql = "SELECT * FROM user WHERE mail=? AND mdp=?";
-        Connection connexion = AccessDB.getConnection();
+        Connection connexion = AccessBD.getConnection();
         PreparedStatement requete = connexion.prepareStatement(sql);
         requete.setString(1, log);
         requete.setString(2, mdp);
@@ -32,7 +32,7 @@ public class UserDao {
     
     public static void inscription(User personne) throws SQLException{
         String sql = "INSERT INTO user (nom, prenom, mail, mdp) VALUES (?, ?, ?, ?)";
-        Connection connexion = AccessDB.getConnection();
+        Connection connexion = AccessBD.getConnection();
         PreparedStatement requete = connexion.prepareStatement(sql);
         requete.setString(1, personne.getNom());
         requete.setString(2, personne.getPrenom());
@@ -47,7 +47,7 @@ public class UserDao {
     public static List<User> getAllPerson() throws SQLException{
         List<User> users = new ArrayList<User>();
         String sql = "SELECT * FROM user";
-        Connection connexion = AccessDB.getConnection();
+        Connection connexion = AccessBD.getConnection();
         Statement requete = connexion.createStatement();
         ResultSet rs = requete.executeQuery(sql);
         while(rs.next()){
@@ -64,7 +64,7 @@ public class UserDao {
     
    public static void modif(User personne) throws SQLException{
         String sql = "UPDATE user SET nom=?, prenom=?, mail=? WHERE idUser=?";
-        Connection connexion = AccessDB.getConnection();
+        Connection connexion = AccessBD.getConnection();
         PreparedStatement requete = connexion.prepareStatement(sql);
         requete.setString(1, personne.getNom());
         requete.setString(2, personne.getPrenom());

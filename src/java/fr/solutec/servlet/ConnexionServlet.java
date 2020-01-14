@@ -5,6 +5,8 @@
  */
 package fr.solutec.servlet;
 
+import fr.solutec.dao.UserDao;
+import fr.solutec.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -58,7 +60,7 @@ public class ConnexionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("accueil.jsp").forward(request, response);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
     /**
@@ -72,7 +74,27 @@ public class ConnexionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+       String login = request.getParameter("login");
+      
+        String mdp = request.getParameter("mdp");
+
+        try {
+            User u = UserDao.getByLoginAndPasse(login, mdp);
+            if (u != null) {
+                request.getSession(true).setAttribute("userConnect",u);
+                response.sendRedirect("home");
+                
+                
+            } else {
+                request.setAttribute("msg", "Identifiants érronés");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            }
+
+        } catch (Exception e) {
+            PrintWriter out = response.getWriter();
+            out.println(e.getMessage());
+
+        }
     }
 
     /**
