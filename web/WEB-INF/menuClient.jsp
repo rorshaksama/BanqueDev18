@@ -7,30 +7,27 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
         <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css">
-        <title>Menu</title>
+        <title>Conseiller</title>
     </head>
     <body>
         <div class="row">
             <div class="col-sm-9">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand" href="#">Navbar</a>
+                    <a class="navbar-brand" href="#">Client</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item active">
-                                <a class="nav-link" href="connexion">Home<span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="client">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="profile">Profil</a>
+                                <a class="nav-link" href="apercuCons.jsp">Aperçu compte</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="compte">Compte</a>
+                                <a class="nav-link" href="WEB-INF/profilCons">Profil</a>
                             </li>
-                            <div class="col-sm-3">
-                                <button type="button" class="btn btn-danger" onclick="location.href = 'deco'">Déconnexion</button>
-                            </div>
                         </ul>
                     </div>
                 </nav>
