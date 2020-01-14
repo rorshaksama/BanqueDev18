@@ -13,6 +13,6 @@
     </head>
     <body>
          <%@include file="menuClient.jsp" %>
-        <h1>Hello World!</h1>
+        Bonjour ${user.prenom} ${user.nom} 
     </body>
 </html>

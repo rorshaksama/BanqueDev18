@@ -5,22 +5,25 @@
  */
 package fr.solutec.servlet;
 
+import fr.solutec.dao.UserDao;
+import fr.solutec.dao.adminDao;
+import fr.solutec.model.Conseiller;
 import fr.solutec.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author esic
  */
-@WebServlet(name = "ClientServlet", urlPatterns = {"/client"})
-public class ClientServlet extends HttpServlet {
+@WebServlet(name = "adminGestionServlet", urlPatterns = {"/adminGestion"})
+public class adminGestionServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +42,10 @@ public class ClientServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ClientServlet</title>");            
+            out.println("<title>Servlet adminGestionServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ClientServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet adminGestionServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,19 +63,15 @@ public class ClientServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(true);
-        User u = (User) session.getAttribute("userConnect");
-
-        if (u != null) {
-            request.setAttribute("user",  u);
-            request.getRequestDispatcher("/WEB-INF/homeClient.jsp").forward(request, response);
-        }
-        else {
-            request.setAttribute("msg", "Petit malin, tu dois te connecter");
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
-        }
-    }
-
+          try {
+            List<Conseiller> conseillers = adminDao.getAllConseillers();
+            request.setAttribute("conseillers", conseillers);
+            request.getRequestDispatcher("WEB-INF/adminGestion.jsp").forward(request, response);
+        } catch (Exception e) {
+            PrintWriter out = response.getWriter();
+            out.println(e.getMessage());
+        }}
+    
     /**
      * Handles the HTTP <code>POST</code> method.
      *
