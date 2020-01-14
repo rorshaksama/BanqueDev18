@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author esic
  */
-@WebServlet(name = "ConnexionServlet", urlPatterns = {"/ConnexionServlet"})
+@WebServlet(name = "ConnexionServlet", urlPatterns = {"/accueil"})
 public class ConnexionServlet extends HttpServlet {
 
     /**
@@ -58,7 +58,7 @@ public class ConnexionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.getRequestDispatcher("accueil.jsp").forward(request, response);
     }
 
     /**
