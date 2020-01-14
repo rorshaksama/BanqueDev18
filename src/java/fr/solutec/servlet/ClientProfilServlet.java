@@ -19,8 +19,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author esic
  */
-@WebServlet(name = "ClientServlet", urlPatterns = {"/client"})
-public class ClientServlet extends HttpServlet {
+@WebServlet(name = "ClientProfilServlet", urlPatterns = {"/profilClient"})
+public class ClientProfilServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +39,10 @@ public class ClientServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ClientServlet</title>");            
+            out.println("<title>Servlet ClientProfilServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ClientServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ClientProfilServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -64,10 +64,9 @@ public class ClientServlet extends HttpServlet {
         User u = (User) session.getAttribute("userConnect");
 
         if (u != null) {
-            request.setAttribute("user",  u);
-            request.getRequestDispatcher("/WEB-INF/homeClient.jsp").forward(request, response);
-        }
-        else {
+            request.setAttribute("user", u);
+            request.getRequestDispatcher("/WEB-INF/profilClient.jsp").forward(request, response);
+        } else {
             request.setAttribute("msg", "Petit malin, tu dois te connecter");
             request.getRequestDispatcher("/index.jsp").forward(request, response);
         }

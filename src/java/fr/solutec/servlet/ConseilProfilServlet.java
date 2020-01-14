@@ -19,8 +19,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author esic
  */
-@WebServlet(name = "ConseilServlet", urlPatterns = {"/conseil"})
-public class ConseilServlet extends HttpServlet {
+@WebServlet(name = "ConseilProfilServlet", urlPatterns = {"/conseilProfil"})
+public class ConseilProfilServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +39,10 @@ public class ConseilServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ConseilServlet</title>");            
+            out.println("<title>Servlet ConseilProfilServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ConseilServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ConseilProfilServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,16 +60,16 @@ public class ConseilServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         HttpSession session = request.getSession(true);
         User u = (User) session.getAttribute("userConnect");
 
-        if (u != null) {
-            request.setAttribute("user",  u);
-            request.getRequestDispatcher("/WEB-INF/homeCons.jsp").forward(request, response);
-        }
-        else {
-            request.setAttribute("msg", "Petit malin, tu dois te connecter");
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
+        try {
+            request.setAttribute("user",  u);       
+            request.getRequestDispatcher("/WEB-INF/profilCons.jsp").forward(request, response);
+        } catch (Exception e) {
+            PrintWriter out = response.getWriter();
+            out.println(e.getMessage());
         }
     }
 
