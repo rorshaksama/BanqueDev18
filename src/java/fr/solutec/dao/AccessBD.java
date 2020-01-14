@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
 public class AccessBD {
     protected static String DRIVER_NAME = "com.mysql.jdbc.Driver";
-    protected static String DB_NAME = "bdpoids2";
+    protected static String DB_NAME = "banquedev18";
     protected static String URL = "jdbc:mysql://localhost/"+DB_NAME;
     protected static String USER = "root";
     protected static String PASSWORD = "";

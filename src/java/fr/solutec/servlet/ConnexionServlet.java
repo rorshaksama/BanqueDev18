@@ -9,6 +9,7 @@ import fr.solutec.dao.UserDao;
 import fr.solutec.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author esic
  */
-@WebServlet(name = "ConnexionServlet", urlPatterns = {"/accueil"})
+@WebServlet(name = "ConnexionServlet", urlPatterns = {"/acceuil"})
 public class ConnexionServlet extends HttpServlet {
 
     /**
@@ -39,7 +40,7 @@ public class ConnexionServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ConnexionServlet</title>");            
+            out.println("<title>Servlet ConnexionServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ConnexionServlet at " + request.getContextPath() + "</h1>");
@@ -74,17 +75,29 @@ public class ConnexionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       String login = request.getParameter("login");
-      
+        String login = request.getParameter("login");
+
         String mdp = request.getParameter("mdp");
 
         try {
-            User u = UserDao.getByLoginAndPasse(login, mdp);
+            User u = UserDao.getByLoginAndPass(login, mdp);
             if (u != null) {
-                request.getSession(true).setAttribute("userConnect",u);
-                response.sendRedirect("home");
-                
-                
+                if (UserDao.isClient(u.getId())) {
+                    request.getSession(true).setAttribute("userConnect", u);
+                    response.sendRedirect("client");
+                } else {
+                    if (UserDao.isAdmin(u.getId())) {
+                        request.getSession(true).setAttribute("userConnect", u);
+                        response.sendRedirect("admin");
+                    } else {
+                        if (UserDao.isCons(u.getId())) {
+                            request.getSession(true).setAttribute("userConnect", u);
+                            response.sendRedirect("conseil");
+                        }
+                    }
+
+                }
+
             } else {
                 request.setAttribute("msg", "Identifiants érronés");
                 request.getRequestDispatcher("index.jsp").forward(request, response);

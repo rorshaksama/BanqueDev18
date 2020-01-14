@@ -23,7 +23,7 @@
                     
                     <h2 class="ta text-white bg-dark">Connexion</h2>
                     <div class="myFormLog">
-                        <form action="connexion" method="POST">
+                        <form action="acceuil" method="POST">
                             <div class="form-group">
                                 <br>
                                 <input type="text" name="login" value="${param['login']}" placeholder="login" class="form-control ta">
