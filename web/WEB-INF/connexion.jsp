@@ -1,9 +1,3 @@
-<%-- 
-    Document   : connexion
-    Created on : 14 janv. 2020, 13:00:29
-    Author     : esic
---%>
-<%--     <%@page import="fr.solutec.model.User"%>           --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
