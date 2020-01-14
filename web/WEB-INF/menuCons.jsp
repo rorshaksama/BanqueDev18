@@ -20,13 +20,13 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item active">
-                                <a class="nav-link" href="homeCons">Home</a>
+                                <a class="nav-link" href="conseil">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="apercuCons.jsp">Aperçu client</a>
+                                <a class="nav-link" href="conseilClient">Aperçu client</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="WEB-INF/profilCons">Profil</a>
+                                <a class="nav-link" href="conseilProfil">Profil</a>
                             </li>
                         </ul>
                     </div>

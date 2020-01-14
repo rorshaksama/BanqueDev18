@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author esic
  */
-@WebServlet(name = "ConseilServlet", urlPatterns = {"/conseil"})
-public class ConseilServlet extends HttpServlet {
+@WebServlet(name = "ConseilProfilServlet", urlPatterns = {"/conseilProfil"})
+public class ConseilProfilServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +37,10 @@ public class ConseilServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ConseilServlet</title>");            
+            out.println("<title>Servlet ConseilProfilServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ConseilServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ConseilProfilServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,7 +58,7 @@ public class ConseilServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/homeCons.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/profilCons.jsp").forward(request, response);
     }
 
     /**
