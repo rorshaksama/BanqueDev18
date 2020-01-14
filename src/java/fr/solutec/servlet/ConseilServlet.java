@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author esic
  */
-@WebServlet(name = "ConseilServlet", urlPatterns = {"/conseil"})
+@WebServlet(name = "ConseilServlet", urlPatterns = {"/conseilHome"})
 public class ConseilServlet extends HttpServlet {
 
     /**
