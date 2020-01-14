@@ -22,7 +22,7 @@
                 <div class="card myCardStyle" style="background-color: rgba(255,255,255,0.3) ">
                     <div class="card-body">
                         <h2 class="Titre text-center" style="color:  black" >Connexion</h2>
-                        <form action="login" method="POST">
+                        <form action="acceuil" method="POST">
                             <div class="form-group " >
                                 <input type="text " name="login" value="${param['acceuil']}" placeholder="login" class="form-control text-center">
                             </div>
