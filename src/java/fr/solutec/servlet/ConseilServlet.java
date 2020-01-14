@@ -60,17 +60,7 @@ public class ConseilServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(true);
-        User u = (User) session.getAttribute("userConnect");
-
-        if (u != null) {
-            request.setAttribute("user",  u);
-            request.getRequestDispatcher("/WEB-INF/homeClient.jsp").forward(request, response);
-        }
-        else {
-            request.setAttribute("msg", "Petit malin, tu dois te connecter");
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
-        } 
+        request.getRequestDispatcher("/WEB-INF/homeConseil.jsp").forward(request, response); 
     }
 
     /**
