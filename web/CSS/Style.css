@@ -7,3 +7,30 @@ and open the template in the editor.
     Created on : 14 janv. 2020, 11:48:38
     Author     : esic
 */
+.myFormLog{
+    margin:auto;
+    width:40%;
+    
+}
+.myCardStyle{
+    box-shadow:0 19px 38px rgba(0,0,0,0.30) !important
+}
+
+.mycardStyleheader{
+    background-color: #048b9a !important;
+    color:white !important;
+    }
+    
+.titre{
+    color: grey;
+    letter-spacing: 3px ;
+    font-family: Roboto;
+    text-align: center;
+
+
+}
+.gtitre{
+    font-size:50px;
+    font-family: Roboto;
+    color: #3366cc;
+}
