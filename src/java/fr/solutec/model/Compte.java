@@ -14,17 +14,17 @@ public class Compte {
     private int solde;
     private int decouvert;
     private boolean isActive;
-    private User user;
+    private Client client;
 
     public Compte() {
     }
 
-    public Compte(int id, int solde, int decouvert, boolean isActive, User user) {
+    public Compte(int id, int solde, int decouvert, boolean isActive, Client client) {
         this.id = id;
         this.solde = solde;
         this.decouvert = decouvert;
         this.isActive = isActive;
-        this.user = user;
+        this.client = client;
     }
 
     public int getId() {
@@ -59,18 +59,21 @@ public class Compte {
         this.isActive = isActive;
     }
 
-    public User getUser() {
-        return user;
+    public Client getClient() {
+        return client;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     @Override
     public String toString() {
-        return "Compte{" + "id=" + id + ", solde=" + solde + ", decouvert=" + decouvert + ", isActive=" + isActive + ", user=" + user + '}';
+        return "Compte{" + "id=" + id + ", solde=" + solde + ", decouvert=" + decouvert + ", isActive=" + isActive + ", client=" + client + '}';
     }
+    
+
+    
     
     
 }

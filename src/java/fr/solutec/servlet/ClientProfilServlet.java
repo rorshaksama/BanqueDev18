@@ -65,7 +65,7 @@ public class ClientProfilServlet extends HttpServlet {
 
         if (u != null) {
             request.setAttribute("user", u);
-            request.getRequestDispatcher("/WEB-INF/pClient.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/profilClient.jsp").forward(request, response);
         } else {
             request.setAttribute("msg", "Petit malin, tu dois te connecter");
             request.getRequestDispatcher("/index.jsp").forward(request, response);

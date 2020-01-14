@@ -12,6 +12,8 @@
         <title>ProfilClient</title>
     </head>
     <body>
-        Bonjour ${user.prenom} ${user.nom}, bienvenue sur votre espace client!
+        <%@include file="menuClient.jsp" %>
+        
+        ${user.prenom} ${user.nom} ${user.mail}  
     </body>
 </html>

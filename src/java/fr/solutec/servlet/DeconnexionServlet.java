@@ -37,7 +37,7 @@ public class DeconnexionServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DeconnexionServlet</title>");            
+            out.println("<title>Servlet DeconnexionServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet DeconnexionServlet at " + request.getContextPath() + "</h1>");
@@ -58,7 +58,7 @@ public class DeconnexionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         request.getSession(true).invalidate();
+        request.getSession(true).invalidate();
         response.sendRedirect("accueil");;
     }
 
