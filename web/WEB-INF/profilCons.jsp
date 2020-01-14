@@ -12,7 +12,23 @@
     <body>
         <%@include file="menuCons.jsp" %>
         <br>
-        Bonjour Monsieur le conseiller !
+        <div class="container">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="..." class="card-img" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Profil du conseiller</h5>
+                            <p class="card-text">Nom : ${u.nom}</p>
+                            <p class="card-text">Prénom : ${u.prenom}</p>
+                            <p class="card-text">Mail : ${u.mail}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <br>
     </body>
 </html>
