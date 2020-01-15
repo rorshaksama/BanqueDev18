@@ -26,6 +26,10 @@ public class Conseiller {
         this.user = user;
     }
 
+    public Conseiller(int id, String nom, String prenom, String log, String mdp) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public int getId() {
         return id;
     }

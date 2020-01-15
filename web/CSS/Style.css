@@ -26,6 +26,7 @@ and open the template in the editor.
     letter-spacing: 3px ;
     font-family: Roboto;
     text-align: center;
+    font-size:30px;
 
 
 }
@@ -33,4 +34,13 @@ and open the template in the editor.
     font-size:50px;
     font-family: Roboto;
     color: #3366cc;
+}
+.titre2{
+    color:#048b9a;
+    letter-spacing: 3px ;
+    font-family: Roboto;
+    text-align: center;
+}
+couleur{
+  color:#048b9a ;
 }
