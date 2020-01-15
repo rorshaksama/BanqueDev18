@@ -22,7 +22,7 @@ public class clientDao {
 
     public static Compte infoClient(User user) throws SQLException {
         Compte co = null;
-        String sql = "SELECT * FROM user u INNER JOIN client cl WHERE u.idUser=cl.idUser INNER JOIN compte c WHERE cl.idClient=c.idClient WHERE ";
+        String sql = "SELECT * FROM user u INNER JOIN client cl WHERE u.idUser=cl.idUser INNER JOIN compte c WHERE cl.idClient=c.idClient";
         Connection connexion = AccessBD.getConnection();
 
         Statement requete = connexion.createStatement();
