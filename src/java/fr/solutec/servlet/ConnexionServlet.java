@@ -84,6 +84,7 @@ public class ConnexionServlet extends HttpServlet {
             if (u != null) {
                 if (UserDao.isClient(u.getId())) {
                     request.getSession(true).setAttribute("userConnect", u);
+                    UserDao.chercherIdUser(u.getLogin());
                     response.sendRedirect("client");
                 } else if (UserDao.isAdmin(u.getId())) {
                     request.getSession(true).setAttribute("userConnect", u);

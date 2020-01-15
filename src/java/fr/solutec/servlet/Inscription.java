@@ -84,10 +84,18 @@ public class Inscription extends HttpServlet {
        
        try{
            UserDao.inscription(u);
+             UserDao.chercherIdUser(u.getLogin());
+          // User v = new User(id);
+           
+                    
+                
+           
+         //  UserDao.creaClient(u.getId());
     response.sendRedirect("index.jsp");
            
         }catch (Exception e){
             PrintWriter out = response.getWriter();
+            
             out.println(e.getMessage());
         }
         

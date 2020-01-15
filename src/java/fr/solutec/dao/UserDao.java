@@ -1,6 +1,8 @@
 
 package fr.solutec.dao;
 
+import fr.solutec.model.Client;
+import fr.solutec.model.Compte;
 import fr.solutec.model.User;
 import java.util.List;
 import java.sql.Connection;
@@ -69,20 +71,17 @@ public class UserDao {
     }
     
     public static void inscription(User personne) throws SQLException{
-        String sql = "INSERT INTO user (nom, prenom,mail, login, mdp) VALUES (?, ?, ?, ?,?)";
+        String sql = "INSERT INTO user (nom, prenom, login, mdp,mail) VALUES (?, ?, ?, ?,?)";
         Connection connexion = AccessBD.getConnection();
         PreparedStatement requete = connexion.prepareStatement(sql);
         requete.setString(1, personne.getNom());
         requete.setString(2, personne.getPrenom());
-        requete.setString(3, personne.getMail());
-        requete.setString(4, personne.getLogin());
-        requete.setString(5, personne.getMdp());
+        requete.setString(5, personne.getMail());
+        requete.setString(3, personne.getLogin());
+        requete.setString(4, personne.getMdp());
         
         requete.execute();
-        
-    
-        
-    }
+ };
     
     public static List<User> getAllPerson() throws SQLException{
         List<User> users = new ArrayList<User>();
@@ -111,9 +110,31 @@ public class UserDao {
         requete.setString(3, personne.getLogin());
         requete.setInt(4, personne.getId());
         requete.executeUpdate
-        ();
-        
-    
-        
-    }
+        ();}
+   
+   public static void creaClient(Client client)throws SQLException{
+        String sql = "INSERT INTO client (idUser) VALUES (null,null,null,?,null)";
+        Connection connexion = AccessBD.getConnection();
+        PreparedStatement requete = connexion.prepareStatement(sql);
+        requete.setInt(1, client.getId());
+        requete.execute();
+   }
+   
+   public static void creaCompte(Compte compte)throws SQLException{
+       String sql = "INSERT INTO client (idUser) VALUES (null,null,(SELECT co.idclient from user u inner join client c on u.idUser=c.idUser inner join compte co on c.idclient=co.idclient where u.iduser=3,false)";
+        Connection connexion = AccessBD.getConnection();
+        PreparedStatement requete = connexion.prepareStatement(sql);
+       // requete.setInt(1, client.getId());
+        requete.execute();
+   }
+   
+  public static void chercherIdUser(String log)throws SQLException{
+       User u=null;
+       String sql="insert into client values(null,null,null,null, (Select idUser from user where login =?),1)";
+       Connection connexion = AccessBD.getConnection();
+        PreparedStatement requete = connexion.prepareStatement(sql);
+        requete.setString(1, log);
+        requete.execute();   
+  
+  }
 }
