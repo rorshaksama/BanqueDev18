@@ -8,6 +8,7 @@ package fr.solutec.dao;
 import fr.solutec.model.Conseiller;
 import fr.solutec.model.User;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -42,6 +43,26 @@ public class adminDao {
         
         return conseillers;
     }
-    
-    
+        public static void suppressionConseiller(int id) throws SQLException{
+        String sql ="DELETE FROM conseiller where idUser = " + id;
+        Connection connexion = AccessBD.getConnection();
+        Statement requete = connexion.createStatement();
+        requete.execute(sql);
+        sql ="DELETE FROM user where idUser = " + id;
+        requete.execute(sql);
+    }
+          
+    public static void modif(User u) throws SQLException{
+    String sql = "UPDATE person SET nom=?, prenom=?,login=?, mdp=?, WHERE idUser=?";
+        
+        Connection connexion = AccessBD.getConnection();
+        PreparedStatement requete = connexion.prepareStatement(sql);
+        requete.setString(1,u.getNom());
+        requete.setString(2, u.getPrenom());
+        requete.setString(3, u.getLogin());
+        requete.setInt(4, u.getId());
+        requete.setString(5, u.getMdp());
+        requete.executeUpdate();
+    }
+
 }

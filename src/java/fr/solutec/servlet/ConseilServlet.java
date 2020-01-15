@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author esic
  */
-@WebServlet(name = "ConseilServlet", urlPatterns = {"/conseilHome"})
+@WebServlet(name = "ConseilServlet", urlPatterns = {"/conseil"})
 public class ConseilServlet extends HttpServlet {
 
     /**
@@ -60,7 +60,17 @@ public class ConseilServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/homeConseil.jsp").forward(request, response); 
+        HttpSession session = request.getSession(true);
+        User u = (User) session.getAttribute("userConnect");
+
+        if (u != null) {
+            request.setAttribute("user",  u);
+            request.getRequestDispatcher("/WEB-INF/homeCons.jsp").forward(request, response);
+        }
+        else {
+            request.setAttribute("msg", "Petit malin, tu dois te connecter");
+            request.getRequestDispatcher("/index.jsp").forward(request, response);
+        }
     }
 
     /**

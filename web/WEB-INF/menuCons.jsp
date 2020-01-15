@@ -11,7 +11,7 @@
     </head>
     <body>
         <div class="row">
-            <div class="col-sm-9">
+            <div class="col-sm-12">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <a class="navbar-brand" href="#">Conseiller</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,7 +20,7 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item active">
-                                <a class="nav-link" href="conseilHome">Home</a>
+                                <a class="nav-link" href="conseil">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="conseilClient">Aperçu client</a>
@@ -28,13 +28,12 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="conseilProfil">Profil</a>
                             </li>
+                            <li class="nav-item">
+                                <button type="button" onclick="location.href = 'login'" class="btn btn-danger btn-block">DECONNEXION</button>
+                            </li>
                         </ul>
                     </div>
                 </nav>
-            </div>
-
-            <div class="col-sm-3">
-                <button type="button" onclick="location.href = 'login'" class="btn btn-danger btn-block">DECONNEXION</button>
             </div>
         </div>
     </body>
